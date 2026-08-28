@@ -1,8 +1,9 @@
 const initialLoader=document.getElementById('loader');
+const routedArrival=document.documentElement.classList.contains('route-arrival');
+if(routedArrival)initialLoader?.classList.add('hidden');
 window.addEventListener('load',()=>{
-  const routed=sessionStorage.getItem('bb-route-transition')==='1';
-  sessionStorage.removeItem('bb-route-transition');
-  setTimeout(()=>initialLoader?.classList.add('hidden'),routed?80:1600);
+  try{sessionStorage.removeItem('bb-route-transition');}catch(e){}
+  if(!routedArrival)setTimeout(()=>initialLoader?.classList.add('hidden'),900);
 });
 
 const nav=document.getElementById('nav');
@@ -63,21 +64,21 @@ document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>revO
 
 function closeP(id){document.getElementById(id)?.classList.remove('on');}
 const welcomePopup=document.getElementById('wPop');
-if(welcomePopup)setTimeout(()=>welcomePopup.classList.add('on'),2000);
+if(welcomePopup&&!routedArrival){
+  let welcomeSeen=false;
+  try{welcomeSeen=sessionStorage.getItem('bb-welcome-seen')==='1';}catch(e){}
+  if(!welcomeSeen)setTimeout(()=>{
+    if(document.body.classList.contains('mobile-menu-active'))return;
+    welcomePopup.classList.add('on');
+    try{sessionStorage.setItem('bb-welcome-seen','1');}catch(e){}
+  },3800);
+}
 const exitPopup=document.getElementById('ePop');
 let exitDone=false;
 if(exitPopup){
   document.addEventListener('mouseleave',e=>{
     if(e.clientY<8&&!exitDone){exitDone=true;exitPopup.classList.add('on');}
   });
-}
-
-const toast=document.getElementById('toast');
-if(toast){
-  setTimeout(()=>{
-    toast.classList.add('show');
-    setTimeout(()=>toast.classList.remove('show'),5000);
-  },7000);
 }
 
 document.addEventListener('click',e=>{
@@ -113,11 +114,11 @@ function triggerPageLoad(label,callback){
   if(fill){
     fill.style.animation='none';
     fill.offsetHeight;
-    fill.style.animation='plFill .42s cubic-bezier(.4,0,.2,1) forwards';
+    fill.style.animation='plFill .30s cubic-bezier(.4,0,.2,1) forwards';
   }
   if(plLabel)plLabel.textContent='Loading '+label+'…';
   pageLoader.classList.add('active');
-  setTimeout(callback,430);
+  setTimeout(callback,310);
 }
 
 document.querySelectorAll('a[href]').forEach(link=>{
