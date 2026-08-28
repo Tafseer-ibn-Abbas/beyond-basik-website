@@ -1,10 +1,17 @@
 const initialLoader=document.getElementById('loader');
 const routedArrival=document.documentElement.classList.contains('route-arrival');
-if(routedArrival)initialLoader?.classList.add('hidden');
-window.addEventListener('load',()=>{
-  try{sessionStorage.removeItem('bb-route-transition');}catch(e){}
-  if(!routedArrival)setTimeout(()=>initialLoader?.classList.add('hidden'),900);
-});
+try{sessionStorage.removeItem('bb-route-transition');}catch(e){}
+if(routedArrival){
+  initialLoader?.classList.add('hidden');
+}else{
+  const hideInitialLoader=()=>initialLoader?.classList.add('hidden');
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',()=>setTimeout(hideInitialLoader,260),{once:true});
+  }else{
+    setTimeout(hideInitialLoader,260);
+  }
+  setTimeout(hideInitialLoader,900);
+}
 
 const nav=document.getElementById('nav');
 const scrollTopButton=document.getElementById('stBtn');
