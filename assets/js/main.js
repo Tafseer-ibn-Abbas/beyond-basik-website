@@ -72,11 +72,11 @@ const welcomePopup=document.getElementById('wPop');
 if(welcomePopup&&!routedArrival){
   let welcomeSeen=false;
   try{welcomeSeen=sessionStorage.getItem('bb-welcome-seen')==='1';}catch(e){}
-  if(!welcomeSeen)setTimeout(()=>{
+  if(!welcomeSeen&&window.innerWidth>768)setTimeout(()=>{
     if(document.body.classList.contains('mobile-menu-active'))return;
     welcomePopup.classList.add('on');
     try{sessionStorage.setItem('bb-welcome-seen','1');}catch(e){}
-  },3800);
+  },4400);
 }
 const exitPopup=document.getElementById('ePop');
 let exitDone=false;
