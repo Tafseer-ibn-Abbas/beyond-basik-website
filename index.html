@@ -8,7 +8,7 @@
 <script>document.documentElement.classList.add('js');try{if(sessionStorage.getItem('bb-route-transition')==='1')document.documentElement.classList.add('route-arrival')}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="assets/img/beyond-basik-logo.png" rel="icon" type="image/png"/>
-<link href="assets/css/styles.css?v=production-multipage-v2-20260828" rel="stylesheet"/>
+<link href="assets/css/styles.css?v=production-multipage-v3-20260828" rel="stylesheet"/>
 <meta content="Beyond Basik Income Tax in Detroit helps families with personal tax returns, business filings, back tax assistance, tax planning, and IRS representation." name="description"/><meta content="#E8457A" name="theme-color"/><meta content="website" property="og:type"/><meta content="Beyond Basik Income Tax | Detroit's Premier Tax Experts" property="og:title"/><meta content="Detroit's trusted income tax experts for personal returns, business filings, back tax assistance, and year-round tax planning." property="og:description"/><meta content="/assets/img/beyond-basik-logo.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "AccountingService",
@@ -44,19 +44,29 @@
 </div>
 </div>
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-<a href="/services" onclick="toggleMenu()">Services</a>
-<a href="/how-it-works" onclick="toggleMenu()">How It Works</a>
-<a href="/why-us" onclick="toggleMenu()">Why Us</a>
-<a href="/reviews" onclick="toggleMenu()">Reviews</a>
-<a href="/contact" onclick="toggleMenu()">Contact</a>
-<a href="tel:3134249588">📞 (313) 424-9588</a>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true" inert>
+<div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Site navigation">
+<div class="mobile-menu-head">
+<a class="mobile-menu-brand" href="/"><img alt="Beyond Basik Income Tax" src="assets/img/beyond-basik-logo.png"/></a>
+<button class="mobile-menu-close" type="button" aria-label="Close navigation menu" onclick="toggleMenu()"><span aria-hidden="true">×</span></button>
+</div>
+<nav class="mobile-menu-links" aria-label="Mobile navigation">
+<a href="/" aria-current="page">Home</a>
+<a href="/services">Services</a>
+<a href="/how-it-works">How It Works</a>
+<a href="/why-us">Why Us</a>
+<a href="/reviews">Reviews</a>
+<a href="/contact">Contact</a>
+</nav>
+<a class="mobile-menu-phone" href="tel:3134249588">📞 (313) 424-9588</a>
+</div>
 </div>
 <!-- NAV -->
 <nav id="nav">
 <div class="nav-inner">
 <a class="nav-brand" href="/"><img alt="Beyond Basik Income Tax" src="assets/img/beyond-basik-logo.png"/></a>
 <ul class="nav-links">
+<li><a href="/" aria-current="page">Home</a></li>
 <li><a href="/services">Services</a></li>
 <li><a href="/how-it-works">How It Works</a></li>
 <li><a href="/why-us">Why Us</a></li>
@@ -139,22 +149,6 @@
 <span class="marquee-item">Detroit Proud Since 2014 <span class="marquee-dot"></span></span>
 </div>
 </div>
-<!-- SERVICES -->
-<section class="section" id="services">
-<div class="services-header reveal">
-<div>
-<span class="section-label">What We Do</span>
-<h2 class="section-title">Expert Services,<br/><em>Personal Touch</em></h2>
-</div>
-<p class="section-body">Every client is different. We tailor our approach to your unique financial situation and goals.</p>
-</div>
-<div class="services-grid home-services-grid">
-<div class="svc-card reveal"><div class="svc-icon">🏠</div><h3>Personal Tax Returns</h3><p>W-2s, 1099s, freelance, self-employed — every scenario handled accurately with maximum refunds secured.</p></div>
-<div class="svc-card reveal"><div class="svc-icon">💼</div><h3>Business Tax Filing</h3><p>LLCs, sole proprietors, S-Corps and partnerships — expert business filings with precision and care.</p></div>
-<div class="svc-card reveal"><div class="svc-icon">💰</div><h3>Maximum Refunds</h3><p>We identify every credit and deduction you qualify for — leaving nothing on the table.</p></div>
-</div>
-<div class="section-actions reveal"><a class="btn-ghost" href="/services">View All Services <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a></div>
-</section>
 <!-- WHY -->
 <section class="section" id="why">
 <div class="why-inner">
@@ -182,6 +176,7 @@
 <div class="footer-inner">
 <a href="/"><img alt="Beyond Basik" class="footer-brand" src="assets/img/beyond-basik-logo.png"/></a>
 <ul class="footer-links">
+<li><a href="/">Home</a></li>
 <li><a href="/services">Services</a></li>
 <li><a href="/how-it-works">How It Works</a></li>
 <li><a href="/why-us">Why Us</a></li>
@@ -223,5 +218,5 @@
 </div>
 </div>
 
-<script src="assets/js/main.js?v=production-multipage-v2-20260828"></script></body>
+<script src="assets/js/main.js?v=production-multipage-v3-20260828"></script></body>
 </html>

@@ -19,11 +19,17 @@ function setMenuState(isOpen){
   if(!menu)return;
   menu.classList.toggle('open',isOpen);
   menu.setAttribute('aria-hidden',String(!isOpen));
+  menu.inert=!isOpen;
   document.body.classList.toggle('mobile-menu-active',isOpen);
   if(toggle){
     toggle.classList.toggle('active',isOpen);
     toggle.setAttribute('aria-expanded',String(isOpen));
     toggle.setAttribute('aria-label',isOpen?'Close navigation menu':'Open navigation menu');
+  }
+  if(isOpen){
+    requestAnimationFrame(()=>menu.querySelector('.mobile-menu-close')?.focus({preventScroll:true}));
+  }else if(document.activeElement&&menu.contains(document.activeElement)){
+    toggle?.focus({preventScroll:true});
   }
 }
 
@@ -35,10 +41,9 @@ function toggleMenu(){
 const mobileMenu=document.getElementById('mobileMenu');
 if(mobileMenu){
   mobileMenu.addEventListener('click',e=>{
-    if(e.target!==mobileMenu)return;
-    const panelWidth=parseFloat(getComputedStyle(mobileMenu,'::before').width)||0;
-    if(e.clientX<window.innerWidth-panelWidth)setMenuState(false);
+    if(e.target===mobileMenu)setMenuState(false);
   });
+  mobileMenu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenuState(false)));
 }
 
 document.addEventListener('keydown',e=>{
