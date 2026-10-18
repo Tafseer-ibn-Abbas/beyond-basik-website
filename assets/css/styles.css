@@ -967,7 +967,7 @@ body.footer-visible .promo-strip{opacity:0;pointer-events:none}
 .popup.dark-pop p{color:rgba(255,255,255,.60)}
 .pop-badge{display:inline-flex;align-items:center;justify-content:center;gap:6px;margin-bottom:15px;padding:7px 12px;border-radius:999px;background:var(--rose-pale);color:var(--rose-deep);font-size:.7rem;font-weight:800}
 .pop-cta{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:13px 16px;border-radius:12px;text-align:center;text-decoration:none;font-size:.84rem;font-weight:800;margin-bottom:10px}
-.pop-skip{color:#98A0AC;font-size:.72rem;cursor:pointer;text-decoration:underline}
+.pop-skip{padding:4px 0;background:transparent;color:#98A0AC;font-size:.72rem;cursor:pointer;text-decoration:underline}
 .dark-pop .pop-skip{color:rgba(255,255,255,.54)}
 
 /* Motion */
@@ -1230,7 +1230,6 @@ body.footer-visible .promo-strip{opacity:0;pointer-events:none}
   .footer-cta{grid-column:auto;justify-self:center;width:min(100%,230px)}
   .footer-bottom{justify-content:center;text-align:center;padding-top:18px}
   .inner-page .fab{display:none}
-  .fab{display:none}
   .fab{
     right:12px;bottom:12px;
     width:46px;height:46px;min-height:46px;

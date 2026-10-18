@@ -86,6 +86,11 @@ if(welcomePopup&&!routedArrival){
   },4400);
 }
 const exitPopup=document.getElementById('ePop');
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape')return;
+  if(welcomePopup?.classList.contains('on'))closeP('wPop');
+  if(exitPopup?.classList.contains('on'))closeP('ePop');
+});
 let exitDone=false;
 if(exitPopup){
   document.addEventListener('mouseleave',e=>{
@@ -121,7 +126,7 @@ function normalizePath(path){
 }
 
 function triggerPageLoad(label,callback){
-  if(!pageLoader){callback();return;}
+  if(!pageLoader||window.matchMedia('(prefers-reduced-motion: reduce)').matches){callback();return;}
   const fill=document.getElementById('plFill');
   if(fill){
     fill.style.animation='none';
