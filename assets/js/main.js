@@ -91,10 +91,30 @@ document.addEventListener('keydown',e=>{
   if(welcomePopup?.classList.contains('on'))closeP('wPop');
   if(exitPopup?.classList.contains('on'))closeP('ePop');
 });
+// Respect visitor intent: desktop mouse exit only, after 15 seconds of browsing.
+// Session storage keeps the delay and the one-time dismissal across page changes.
+const exitIntentSeenKey='bb-exit-seen';
+const exitIntentStartKey='bb-exit-start';
+let exitIntentStart=Date.now();
 let exitDone=false;
+try{
+  const storedStart=Number(sessionStorage.getItem(exitIntentStartKey));
+  if(Number.isFinite(storedStart)&&storedStart>0&&storedStart<=exitIntentStart){
+    exitIntentStart=storedStart;
+  }else{
+    sessionStorage.setItem(exitIntentStartKey,String(exitIntentStart));
+  }
+  exitDone=sessionStorage.getItem(exitIntentSeenKey)==='1';
+}catch(e){}
 if(exitPopup){
   document.addEventListener('mouseleave',e=>{
-    if(e.clientY<8&&!exitDone){exitDone=true;exitPopup.classList.add('on');}
+    if(exitDone||e.clientY>=8)return;
+    if(Date.now()-exitIntentStart<15000)return;
+    if(window.innerWidth<=768||!window.matchMedia('(hover: hover) and (pointer: fine)').matches)return;
+    if(welcomePopup?.classList.contains('on')||mobileMenu?.classList.contains('open')||pageLoader?.classList.contains('active'))return;
+    exitDone=true;
+    try{sessionStorage.setItem(exitIntentSeenKey,'1');}catch(e){}
+    exitPopup.classList.add('on');
   });
 }
 
